@@ -50,12 +50,14 @@ int main(int argc, char **argv) {
     // Number of chunks (including padding)
     int q = ceil((double)(fsize + 1) / 16.0);
     uchar **M = (uchar **)malloc(sizeof(uchar *) * q);
+    uchar *buf = (uchar *)malloc(sizeof(uchar) * fsize);
+    fread(buf, sizeof(char), fsize, fd); // read only in one time
     for (int i = 0; i < fsize; ++i) {
         int chunk = i / 16;
         int byte = i % 16;
         if (byte == 0)
             M[chunk] = (uchar *)calloc(16, sizeof(char));
-        fread(&M[chunk][byte], sizeof(uchar), 1, fd);
+        M[chunk][byte] = buf[i];
     }
     fclose(fd);
 
@@ -74,4 +76,8 @@ int main(int argc, char **argv) {
         printf("ACCEPT\n");
     else
         printf("REJECT\n");
+
+    for (int i = 0; i < q; ++i)
+        free(M[i]);
+    free(M);
 }
