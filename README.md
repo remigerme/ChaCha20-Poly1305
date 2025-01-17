@@ -1,3 +1,7 @@
 # poly1305
 
-Do not compile yet, did some progress during the lab.
+## TODO
+
+- [ ] docstring
+- [ ] better file reading
+- [ ] readme
