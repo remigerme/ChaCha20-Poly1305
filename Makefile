@@ -15,8 +15,9 @@ chacha20: src/utils.c src/chacha20.c src/chacha20_bin.c
 
 tests: quarter-round
 	./quarter-round
+	./tests/chacha20/test.sh
 
-quarter-round: src/chacha20.c tests/quarter_round.c
+quarter-round: src/chacha20.c tests/chacha20/quarter_round.c
 	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $^
 
 clean:

@@ -27,5 +27,10 @@ int main() {
     for (int i = 0; i < 16; ++i)
         equal &= state[i] == expected_state[i];
 
+    if (equal)
+        printf("Quarter round was successfull.\n");
+    else
+        printf("Quarter round failed.\n");
+
     return 1 - equal;
 }
