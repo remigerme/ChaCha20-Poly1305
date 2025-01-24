@@ -1,6 +1,6 @@
-# poly1305
+# ChaCha20 and Poly1305
 
-The code have been implemented using [RFC 8439](https://datatracker.ietf.org/doc/html/rfc8439), especially using section 2.5.
+The code have been implemented using [RFC 8439](https://datatracker.ietf.org/doc/html/rfc8439)
 
 ## Installation
 
@@ -8,9 +8,21 @@ The code have been implemented using [RFC 8439](https://datatracker.ietf.org/doc
 make
 ```
 
-This builds two targets : `poly1305-gen` and `poly1305-check`.
+This builds three targets : `poly1305-gen`, `poly1305-check` and `chacha20`.
 
 ## Tests
+
+### ChaCha20
+
+The following command will compile and run tests :
+
+```shell
+make tests
+```
+
+Information will be displayed. If a test fails it returns an error code, otherwise it returns with code 0 if successfull.
+
+### Poly1305
 
 For now, there are only some manual tests available.
 
