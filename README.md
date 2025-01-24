@@ -20,15 +20,7 @@ The following command will compile and run tests automatically :
 make tests
 ```
 
-Information will be displayed. If a test fails it returns an error code, otherwise it returns with code 0 if successfull.
-
-You can also manually test the `chacha20` program using the files provided in `tests/chacha20`. Note that this example used the following nonce : `000000000000004a00000000`.
-
-You can also generate nonce for your own tests :
-
-```shell
-openssl rand -hex 12
-```
+Information about performed tests will be displayed. If a test fails it returns an error code, otherwise it returns with code 0 if successfull.
 
 ### Poly1305
 
