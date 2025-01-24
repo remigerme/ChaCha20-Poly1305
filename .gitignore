@@ -1,6 +1,7 @@
 .vscode
 *.dSYM
 .DS_Store
-poly1305-gen
-poly1305-check
-quarter-round
+/poly1305-gen
+/poly1305-check
+/chacha20
+/quarter-round
