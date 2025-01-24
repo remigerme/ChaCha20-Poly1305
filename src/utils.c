@@ -38,3 +38,10 @@ void le_bytes_from_num(mpz_t T, uchar out[16]) {
 
     mpz_clear(temp);
 }
+
+int get_file_size(FILE *fd) {
+    fseek(fd, 0, SEEK_END);
+    int size = ftell(fd);
+    fseek(fd, 0, SEEK_SET);
+    return size;
+}

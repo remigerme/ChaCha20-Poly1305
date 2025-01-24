@@ -28,11 +28,7 @@ int main(int argc, char **argv) {
 
     // Opening file
     FILE *fd = fopen(argv[2], "rb");
-    // Retrieving file size
-    // https://stackoverflow.com/questions/238603/how-can-i-get-a-files-size-in-c
-    fseek(fd, 0, SEEK_END);
-    int fsize = ftell(fd);
-    fseek(fd, 0, SEEK_SET);
+    int fsize = get_file_size(fd);
 
     // Number of chunks (including padding)
     int q = ceil((double)(fsize + 1) / 16.0);
