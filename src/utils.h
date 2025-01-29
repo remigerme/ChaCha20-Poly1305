@@ -2,6 +2,7 @@
 #define UTILS_H
 
 #include <gmp.h>
+#include <stdint.h>
 #include <stdio.h>
 
 typedef unsigned char uchar;
@@ -22,6 +23,12 @@ void le_bytes_to_num(uchar rs[16], mpz_t RS);
  * @param out Buffer (little-endian) representation of T
  */
 void le_bytes_from_num(mpz_t T, uchar out[16]);
+
+/**
+ * @param x Int input to convert into a buffer
+ * @param out Buffer (little-endian) representation of x
+ */
+void le_bytes_from_int(uint64_t x, uchar out[8]);
 
 /**
  * Retrieve file size

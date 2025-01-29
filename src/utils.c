@@ -39,6 +39,13 @@ void le_bytes_from_num(mpz_t T, uchar out[16]) {
     mpz_clear(temp);
 }
 
+void le_bytes_from_int(uint64_t x, uchar out[8]) {
+    for (int i = 0; i < 8; i++) {
+        out[i] = (uchar)(x & 0xFF);
+        x >>= 8;
+    }
+}
+
 int get_file_size(FILE *fd) {
     fseek(fd, 0, SEEK_END);
     int size = ftell(fd);
