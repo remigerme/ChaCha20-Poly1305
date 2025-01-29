@@ -42,6 +42,7 @@ void aead(uint32_t key[8], uint32_t nonce[3], char *aad, int aad_size,
     q += 16;                                  // Respective lengths
     q /= 16;                                  // Number of chunks
     uchar **mac_data = (uchar **)malloc(sizeof(uchar *) * q);
+    mac_data[0] = (uchar *)malloc(sizeof(uchar) * 16);
     int c = 0;
     int i = 0;
 
@@ -49,13 +50,16 @@ void aead(uint32_t key[8], uint32_t nonce[3], char *aad, int aad_size,
     while (16 * c + i < aad_size) {
         mac_data[c][i] = aad[16 * c + i];
         i = (i + 1) % 16;
-        if (i == 0)
+        if (i == 0) {
             ++c;
+            mac_data[c] = (uchar *)malloc(sizeof(uchar) * 16);
+        }
     }
     int res = pad16(aad_size, &mac_data[c][i]);
     if (res) {
         i = 0;
         ++c;
+        mac_data[c] = (uchar *)malloc(sizeof(uchar) * 16);
     }
 
     // Ciphertext
@@ -63,12 +67,16 @@ void aead(uint32_t key[8], uint32_t nonce[3], char *aad, int aad_size,
     while (16 * (c - ca) + i < plain_size) {
         mac_data[c][i] = ciphertext[16 * (c - ca) + i];
         i = (i + 1) % 16;
-        if (i == 0)
+        if (i == 0) {
             ++c;
+            mac_data[c] = (uchar *)malloc(sizeof(uchar) * 16);
+        }
     }
     res = pad16(plain_size, &mac_data[c][i]);
-    if (res)
+    if (res) {
         ++c;
+        mac_data[c] = (uchar *)malloc(sizeof(uchar) * 16);
+    }
 
     assert(c == q - 1);
 
