@@ -39,7 +39,7 @@ int main(int argc, char **argv) {
     fclose(input_fd);
 
     // Computing encrypted data
-    char *encrypted = (char *)malloc(sizeof(char) * plain_size);
+    uchar *encrypted = (uchar *)malloc(sizeof(uchar) * plain_size);
     chacha20_encrypt(key, 1, nonce, plain, plain_size, encrypted);
 
     // Writing encrypted data to output

@@ -1,6 +1,6 @@
 # ChaCha20 and Poly1305
 
-The code have been implemented using [RFC 8439](https://datatracker.ietf.org/doc/html/rfc8439)
+The code have been implemented using [RFC 8439](https://datatracker.ietf.org/doc/html/rfc8439).
 
 ## Installation
 

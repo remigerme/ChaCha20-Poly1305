@@ -1,3 +1,5 @@
+#include "chacha20.h"
+
 #include <assert.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -40,7 +42,7 @@ void quarter_round(uint32_t state[16], int a, int b, int c, int d) {
 }
 
 void chacha20_block(uint32_t key[8], uint32_t nonce[3], uint32_t count,
-                    char out[64]) {
+                    uchar out[64]) {
     // Initializing state
     uint32_t state[16] = {0x61707865, 0x3320646e, 0x79622d32, 0x6b206574,
                           key[0],     key[1],     key[2],     key[3],
@@ -72,8 +74,8 @@ void chacha20_block(uint32_t key[8], uint32_t nonce[3], uint32_t count,
 
 void chacha20_encrypt(uint32_t key[8], uint32_t initial_counter,
                       uint32_t nonce[3], char *plain, int plain_size,
-                      char *encrypted) {
-    char key_stream[64];
+                      uchar *encrypted) {
+    uchar key_stream[64];
 
     // Treating full blocks
     for (int j = 0; j < plain_size / 64; ++j) {

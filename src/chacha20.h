@@ -1,6 +1,8 @@
 #ifndef CHACHA20_H
 #define CHACHA20_H
 
+#include "utils.h"
+
 #include <stdint.h>
 #include <stdlib.h>
 
@@ -20,13 +22,13 @@ void quarter_round(uint32_t state[16], int a, int b, int c, int d);
  * See section 2.3
  */
 void chacha20_block(uint32_t key[8], uint32_t nonce[3], uint32_t count,
-                    char out[64]);
+                    uchar out[64]);
 
 /**
  * See section 2.4
  */
 void chacha20_encrypt(uint32_t key[8], uint32_t initial_counter,
                       uint32_t nonce[3], char *plain, int plain_size,
-                      char *encrypted);
+                      uchar *encrypted);
 
 #endif // CHACHA20_H
