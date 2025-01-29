@@ -8,11 +8,11 @@ The code have been implemented using [RFC 8439](https://datatracker.ietf.org/doc
 make
 ```
 
-This builds three targets : `poly1305-gen`, `poly1305-check` and `chacha20`.
+This builds five targets : `poly1305-gen`, `poly1305-check`, `chacha20`, `aead_wrap` and `aead_unwrap`.
 
 ## Tests
 
-### ChaCha20
+### ChaCha20 & AEAD
 
 The following command will compile and run tests automatically :
 
