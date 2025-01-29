@@ -22,6 +22,7 @@ aead_unwrap: src/utils.c src/chacha20.c src/poly1305.c src/aead.c src/aead_unwra
 tests: all quarter-round
 	./quarter-round
 	./tests/chacha20/test.sh
+	./tests/aead/test.sh
 
 quarter-round: src/chacha20.c tests/chacha20/quarter_round.c
 	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $^
