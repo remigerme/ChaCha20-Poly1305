@@ -28,4 +28,4 @@ quarter-round: src/chacha20.c tests/chacha20/quarter_round.c
 	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $^
 
 clean:
-	rm -f poly1305-gen poly1305-check chacha20 quarter-round
+	rm -f poly1305-gen poly1305-check chacha20 aead_wrap aead_unwrap quarter-round
