@@ -48,7 +48,7 @@ int main(int argc, char **argv) {
     // Computing ciphertext and tag
     uchar *ciphertext = (uchar *)malloc(sizeof(uchar) * plain_size);
     uchar tag[16];
-    aead(key, nonce, aad, aad_size, plain, plain_size, ciphertext, tag);
+    aead(Wrap, key, nonce, aad, aad_size, plain, plain_size, ciphertext, tag);
 
     // Writing ciphertext data to file
     FILE *output_fd = fopen(argv[5], "wb");

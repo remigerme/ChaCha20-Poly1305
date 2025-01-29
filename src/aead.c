@@ -26,8 +26,9 @@ void poly1305_key_gen(uint32_t key[8], uint32_t nonce[3], uchar out[32]) {
     memcpy(out, buf, 32);
 }
 
-void aead(uint32_t key[8], uint32_t nonce[3], char *aad, int aad_size,
-          char *plain, int plain_size, uchar *ciphertext, uchar tag[16]) {
+void aead(aead_mode mode, uint32_t key[8], uint32_t nonce[3], char *aad,
+          int aad_size, char *plain, int plain_size, uchar *ciphertext,
+          uchar tag[16]) {
     // Creating otk
     uchar otk[32];
     poly1305_key_gen(key, nonce, otk);
@@ -65,7 +66,10 @@ void aead(uint32_t key[8], uint32_t nonce[3], char *aad, int aad_size,
     // Ciphertext
     int ca = c;
     while (16 * (c - ca) + i < plain_size) {
-        mac_data[c][i] = ciphertext[16 * (c - ca) + i];
+        if (mode == Wrap)
+            mac_data[c][i] = ciphertext[16 * (c - ca) + i];
+        else
+            mac_data[c][i] = plain[16 * (c - ca) + i];
         i = (i + 1) % 16;
         if (i == 0) {
             ++c;
